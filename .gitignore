@@ -1,0 +1,92 @@
+# Gradle
+.gradle/
+build/
+out/
+!gradle/wrapper/gradle-wrapper.jar
+.gradle/
+.gradle/*
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+*.log
+*.patch
+*.log.*
+
+# Eclipse
+.project
+.classpath
+.cotlin
+.settings/
+
+# IDEA
+.idea/
+*.iml
+.idea_modules/
+.idea_symbols/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+.Trashes
+
+# Linux
+*~
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$
+
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.jar
+
+# IntelliJ
+.idea/
+*.iws
+*.ipr
+*.iml
+
+# Logs
+logs/
+*.log
+
+# Python virtualenv
+env/
+
+# Compiled source
+*.o
+*.so
+*.com
+*.class
+
+# Git
+*.rej
+*.orig
+*.pack
+*.idx
+.git/
+settings.xml
+.cache/
+target/
+.site/
+test-output/
