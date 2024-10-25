@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "jaber.kafka.topics.sale",
+      "type": "java.lang.String",
+      "description": "Description for jaber.kafka.topics.sale."
+  }
+] }

@@ -1,0 +1,16 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: sale-service
+  datasource:
+    url: jdbc:postgresql://localhost:5434/sale-db
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+jaber:
+  kafka:
+    topics:
+      sale: tp-saga-sale
