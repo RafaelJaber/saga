@@ -1,0 +1,16 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: inventory-service
+  datasource:
+    url: jdbc:postgresql://localhost:5435/inventory-db
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+#jaber:
+#  kafka:
+#    topics:
+#      sale: tp-saga-sale

@@ -12,6 +12,18 @@ services:
     ports:
       - "5434:5432"
 
+  inventory-db:
+    image: postgres:latest
+    container_name: inventory-db
+    networks:
+      - orchestrator-saga
+    environment:
+      - POSTGRES_DB=inventory-db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5435:5432"
+
 
 networks:
   orchestrator-saga:
