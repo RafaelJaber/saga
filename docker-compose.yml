@@ -24,6 +24,17 @@ services:
     ports:
       - "5435:5432"
 
+  payment-db:
+    image: postgres:latest
+    container_name: payment-db
+    networks:
+      - orchestrator-saga
+    environment:
+      - POSTGRES_DB=payment-db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5436:5432"
 
 networks:
   orchestrator-saga:

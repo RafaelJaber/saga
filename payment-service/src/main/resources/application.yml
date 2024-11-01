@@ -1,0 +1,16 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: payment-service
+  datasource:
+    url: jdbc:postgresql://localhost:5436/payment-db
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+#jaber:
+#  kafka:
+#    topics:
+#      sale: tp-saga-sale
