@@ -4,11 +4,12 @@ import com.rafaeljaber.inventory.application.core.domain.Inventory;
 import com.rafaeljaber.inventory.application.core.domain.Sale;
 import com.rafaeljaber.inventory.application.core.domain.enums.SaleEvent;
 import com.rafaeljaber.inventory.application.core.domain.exceptions.InsufficientStockException;
+import com.rafaeljaber.inventory.application.ports.in.DebitInventoryInputPort;
 import com.rafaeljaber.inventory.application.ports.in.FindInventoryByProductIdInputPort;
 import com.rafaeljaber.inventory.application.ports.out.SendUpdatedInventoryOutputPort;
 import com.rafaeljaber.inventory.application.ports.out.UpdateInventoryOutputPort;
 
-public class DebitInventoryUseCase {
+public class DebitInventoryUseCase implements DebitInventoryInputPort {
 
     private final FindInventoryByProductIdInputPort findInventoryByProductIdInputPort;
     private final UpdateInventoryOutputPort updateInventoryOutputPort;
@@ -25,6 +26,7 @@ public class DebitInventoryUseCase {
     }
 
 
+    @Override
     public void debit(Sale sale) {
         Inventory inventory = findInventoryByProductIdInputPort.find(sale.getProductId());
         if (inventory.getQuantity() < sale.getQuantity()) {
