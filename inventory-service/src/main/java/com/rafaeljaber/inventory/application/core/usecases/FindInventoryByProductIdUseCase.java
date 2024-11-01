@@ -1,7 +1,7 @@
 package com.rafaeljaber.inventory.application.core.usecases;
 
 import com.rafaeljaber.inventory.application.core.domain.Inventory;
-import com.rafaeljaber.inventory.application.core.domain.exceptions.InventoryNotFoundByProductIdException;
+import com.rafaeljaber.inventory.application.core.usecases.exceptions.InventoryNotFoundByProductIdException;
 import com.rafaeljaber.inventory.application.ports.in.FindInventoryByProductIdInputPort;
 import com.rafaeljaber.inventory.application.ports.out.FindInventoryByProductIdOutputPort;
 

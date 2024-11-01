@@ -1,4 +1,4 @@
-package com.rafaeljaber.inventory.application.core.domain.exceptions;
+package com.rafaeljaber.inventory.application.core.usecases.exceptions;
 
 public class InventoryNotFoundByProductIdException extends RuntimeException {
     public InventoryNotFoundByProductIdException(Integer productId) {

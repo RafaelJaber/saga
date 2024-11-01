@@ -3,7 +3,7 @@ package com.rafaeljaber.inventory.application.core.usecases;
 import com.rafaeljaber.inventory.application.core.domain.Inventory;
 import com.rafaeljaber.inventory.application.core.domain.Sale;
 import com.rafaeljaber.inventory.application.core.domain.enums.SaleEvent;
-import com.rafaeljaber.inventory.application.core.domain.exceptions.InsufficientStockException;
+import com.rafaeljaber.inventory.application.core.usecases.exceptions.InsufficientStockException;
 import com.rafaeljaber.inventory.application.ports.in.DebitInventoryInputPort;
 import com.rafaeljaber.inventory.application.ports.in.FindInventoryByProductIdInputPort;
 import com.rafaeljaber.inventory.application.ports.out.SendUpdatedInventoryOutputPort;
