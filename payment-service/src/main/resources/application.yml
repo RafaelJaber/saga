@@ -14,3 +14,5 @@ jaber:
   kafka:
     topics:
       sale: tp-saga-sale
+    group-id:
+      payment: "payment"

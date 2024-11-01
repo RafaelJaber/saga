@@ -6,11 +6,12 @@ import com.rafaeljaber.payment.application.core.domain.User;
 import com.rafaeljaber.payment.application.core.domain.enums.SaleEvent;
 import com.rafaeljaber.payment.application.core.usecases.exceptions.InsufficientFundsException;
 import com.rafaeljaber.payment.application.ports.in.FindUserByIdInputPort;
+import com.rafaeljaber.payment.application.ports.in.SalePaymentInputPort;
 import com.rafaeljaber.payment.application.ports.out.SavePaymentOutputPort;
 import com.rafaeljaber.payment.application.ports.out.SendValidatedPaymentOutputPort;
 import com.rafaeljaber.payment.application.ports.out.UpdateUserOutputPort;
 
-public class SalePaymentUseCase {
+public class SalePaymentUseCase implements SalePaymentInputPort {
 
     private final FindUserByIdInputPort findUserByIdInputPort;
     private final UpdateUserOutputPort updateUserOutputPort;
@@ -30,6 +31,7 @@ public class SalePaymentUseCase {
     }
 
 
+    @Override
     public void payment(Sale sale) {
         User user = findUserByIdInputPort.find(sale.getUserId());
         if (user.getBalance().compareTo(sale.getValue()) < 0) {
