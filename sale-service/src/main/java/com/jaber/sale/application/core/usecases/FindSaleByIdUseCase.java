@@ -1,0 +1,25 @@
+package com.jaber.sale.application.core.usecases;
+
+import com.jaber.sale.application.core.domain.Sale;
+import com.jaber.sale.application.core.usecases.exceptions.SaleNotFoundException;
+import com.jaber.sale.application.ports.in.FindSaleByIdInputPort;
+import com.jaber.sale.application.ports.out.FindSaleByIdOutputPort;
+
+public class FindSaleByIdUseCase implements FindSaleByIdInputPort {
+
+    private final FindSaleByIdOutputPort findSaleByIdOutputPort;
+
+    public FindSaleByIdUseCase(
+            FindSaleByIdOutputPort findSaleByIdOutputPort
+    ) {
+        this.findSaleByIdOutputPort = findSaleByIdOutputPort;
+    }
+
+    @Override
+    public Sale find(final Integer id) {
+        return findSaleByIdOutputPort.find(id).orElseThrow(
+                SaleNotFoundException::new
+        );
+    }
+
+}
