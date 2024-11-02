@@ -43,9 +43,9 @@ public class SalePaymentUseCase implements SalePaymentInputPort {
             savePaymentOutputPort.save(
                     this.buildPayment(sale)
             );
-            this.sendToKafkaOutputPort.send(sale, SaleEvent.VALIDATED_PAYMENT);
+            this.sendToKafkaOutputPort.send(sale, SaleEvent.PAYMENT_EXECUTED);
         } catch (Exception ex) {
-            sendToKafkaOutputPort.send(sale, SaleEvent.FAILED_PAYMENT);
+            sendToKafkaOutputPort.send(sale, SaleEvent.PAYMENT_FAILED);
         }
 
     }

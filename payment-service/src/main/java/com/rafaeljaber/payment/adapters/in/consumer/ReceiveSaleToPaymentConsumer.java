@@ -16,11 +16,11 @@ public class ReceiveSaleToPaymentConsumer {
     private final SalePaymentInputPort salePaymentInputPort;
 
     @KafkaListener(
-            topics = "${jaber.kafka.topics.sale}",
+            topics = "${jaber.kafka.topics.payment}",
             groupId = "${jaber.kafka.group-id.payment}"
     )
     public void receive(SaleMessage saleMessage) {
-        if (SaleEvent.UPDATED_INVENTORY.equals(saleMessage.getEvent())) {
+        if (SaleEvent.EXECUTE_PAYMENT.equals(saleMessage.getEvent())) {
             log.info("Beginning of payment");
             salePaymentInputPort.payment(saleMessage.getSale());
             log.info("End of payment");

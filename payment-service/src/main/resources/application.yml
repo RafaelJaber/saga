@@ -13,6 +13,7 @@ spring:
 jaber:
   kafka:
     topics:
-      sale: tp-saga-sale
+      payment: tp-saga-payment
+      orchestrator: tp-saga-orchestrator
     group-id:
       payment: "payment"
