@@ -8,7 +8,7 @@ import com.rafaeljaber.payment.application.core.usecases.exceptions.Insufficient
 import com.rafaeljaber.payment.application.ports.in.FindUserByIdInputPort;
 import com.rafaeljaber.payment.application.ports.in.SalePaymentInputPort;
 import com.rafaeljaber.payment.application.ports.out.SavePaymentOutputPort;
-import com.rafaeljaber.payment.application.ports.out.SendValidatedPaymentOutputPort;
+import com.rafaeljaber.payment.application.ports.out.SendToKafkaOutputPort;
 import com.rafaeljaber.payment.application.ports.out.UpdateUserOutputPort;
 
 public class SalePaymentUseCase implements SalePaymentInputPort {
@@ -16,33 +16,38 @@ public class SalePaymentUseCase implements SalePaymentInputPort {
     private final FindUserByIdInputPort findUserByIdInputPort;
     private final UpdateUserOutputPort updateUserOutputPort;
     private final SavePaymentOutputPort savePaymentOutputPort;
-    private final SendValidatedPaymentOutputPort sendValidatedPaymentOutputPort;
+    private final SendToKafkaOutputPort sendToKafkaOutputPort;
 
     public SalePaymentUseCase(
             FindUserByIdInputPort findUserByIdInputPort,
             UpdateUserOutputPort updateUserOutputPort,
             SavePaymentOutputPort savePaymentOutputPort,
-            SendValidatedPaymentOutputPort sendValidatedPaymentOutputPort
+            SendToKafkaOutputPort sendToKafkaOutputPort
     ) {
         this.findUserByIdInputPort = findUserByIdInputPort;
         this.updateUserOutputPort = updateUserOutputPort;
         this.savePaymentOutputPort = savePaymentOutputPort;
-        this.sendValidatedPaymentOutputPort = sendValidatedPaymentOutputPort;
+        this.sendToKafkaOutputPort = sendToKafkaOutputPort;
     }
 
 
     @Override
     public void payment(Sale sale) {
-        User user = findUserByIdInputPort.find(sale.getUserId());
-        if (user.getBalance().compareTo(sale.getValue()) < 0) {
-            throw new InsufficientFundsException(user.getBalance(), sale.getValue());
+        try {
+            User user = findUserByIdInputPort.find(sale.getUserId());
+            if (user.getBalance().compareTo(sale.getValue()) < 0) {
+                throw new InsufficientFundsException(user.getBalance(), sale.getValue());
+            }
+            user.debitBalance(sale.getValue());
+            this.updateUserOutputPort.update(user);
+            savePaymentOutputPort.save(
+                    this.buildPayment(sale)
+            );
+            this.sendToKafkaOutputPort.send(sale, SaleEvent.VALIDATED_PAYMENT);
+        } catch (Exception ex) {
+            sendToKafkaOutputPort.send(sale, SaleEvent.FAILED_PAYMENT);
         }
-        user.debitBalance(sale.getValue());
-        this.updateUserOutputPort.update(user);
-        savePaymentOutputPort.save(
-                this.buildPayment(sale)
-        );
-        this.sendValidatedPaymentOutputPort.send(sale, SaleEvent.VALIDATED_PAYMENT);
+
     }
 
 
