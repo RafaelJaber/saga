@@ -9,5 +9,10 @@
       "name": "jaber.kafka.group-id.sale-finalize",
       "type": "java.lang.String",
       "description": "Description for jaber.kafka.group-id.sale-finalize."
+    },
+    {
+      "name": "jaber.kafka.group-id.sale-cancel",
+      "type": "java.lang.String",
+      "description": "Description for jaber.kafka.group-id.sale-cancel."
     }
   ] }

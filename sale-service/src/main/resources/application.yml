@@ -16,3 +16,4 @@ jaber:
       sale: tp-saga-sale
     group-id:
       sale-finalize: "sale-finalize"
+      sale-cancel: "sale-cancel"
