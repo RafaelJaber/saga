@@ -21,7 +21,7 @@ public class ReceiveSaleToFinalizeConsumer {
             groupId = "${jaber.kafka.group-id.sale-finalize}"
     )
     public void receive(SaleMessage saleMessage) {
-        if (SaleEvent.VALIDATED_PAYMENT.equals(saleMessage.getEvent())) {
+        if (SaleEvent.FINALIZE_SALE.equals(saleMessage.getEvent())) {
             log.info("Beginning of sale finalization");
             finalizeSaleInputPort.finalize(saleMessage.getSale());
             log.info("End of sale finalization");

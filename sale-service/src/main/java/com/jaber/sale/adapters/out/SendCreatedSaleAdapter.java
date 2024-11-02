@@ -15,13 +15,13 @@ public class SendCreatedSaleAdapter implements SendCreatedSaleOutputPort {
 
     private final KafkaTemplate<String, SaleMessage> kafkaTemplate;
 
-    @Value("${jaber.kafka.topics.sale}")
-    private String saleTopic;
+    @Value("${jaber.kafka.topics.orchestrator}")
+    private String orchestratorTopic;
 
     @Override
     public void send(Sale sale, SaleEvent event) {
         SaleMessage saleMessage = new SaleMessage(sale, event);
-        kafkaTemplate.send(saleTopic, saleMessage);
+        kafkaTemplate.send(orchestratorTopic, saleMessage);
     }
 
 }

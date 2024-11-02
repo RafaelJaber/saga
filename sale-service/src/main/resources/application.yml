@@ -14,6 +14,7 @@ jaber:
   kafka:
     topics:
       sale: tp-saga-sale
+      orchestrator: tp-saga-orchestrator
     group-id:
       sale-finalize: "sale-finalize"
       sale-cancel: "sale-cancel"

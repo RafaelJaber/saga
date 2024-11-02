@@ -21,7 +21,7 @@ public class CancelSaleConsumer {
             groupId = "${jaber.kafka.group-id.sale-cancel}"
     )
     public void receive(SaleMessage saleMessage) {
-        if (SaleEvent.ROLLBACK_INVENTORY.equals(saleMessage.getEvent())) {
+        if (SaleEvent.CANCEL_SALE.equals(saleMessage.getEvent())) {
             log.info("Beginning of sale cancellation");
             cancelSaleInputPort.cancel(saleMessage.getSale());
             log.info("End of sale cancellation");
