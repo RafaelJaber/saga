@@ -19,7 +19,7 @@ public class InventoryFailureUseCase implements WorkflowInputPort {
 
     @Override
     public void execute(Sale sale) {
-        sendSaleToTopicOutputPort.send(sale, SaleEvent.CANCEL_SALE, Topics.SALE.getTopic());
+        sendSaleToTopicOutputPort.send(sale, SaleEvent.CANCEL_SALE, Topics.SALE);
     }
 
     @Override

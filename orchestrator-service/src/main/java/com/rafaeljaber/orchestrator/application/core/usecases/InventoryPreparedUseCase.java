@@ -18,7 +18,7 @@ public class InventoryPreparedUseCase implements WorkflowInputPort {
 
     @Override
     public void execute(Sale sale) {
-        sendSaleToTopicOutputPort.send(sale, SaleEvent.EXECUTE_PAYMENT, Topics.PAYMENT.getTopic());
+        sendSaleToTopicOutputPort.send(sale, SaleEvent.EXECUTE_PAYMENT, Topics.PAYMENT);
     }
 
     @Override

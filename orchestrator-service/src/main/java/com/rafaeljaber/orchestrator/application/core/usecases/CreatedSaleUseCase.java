@@ -19,7 +19,7 @@ public class CreatedSaleUseCase implements WorkflowInputPort {
 
     @Override
     public void execute(Sale sale) {
-        sendSaleToTopicOutputPort.send(sale, SaleEvent.PREPARE_INVENTORY, Topics.INVENTORY.getTopic());
+        sendSaleToTopicOutputPort.send(sale, SaleEvent.PREPARE_INVENTORY, Topics.INVENTORY);
     }
 
     @Override

@@ -18,7 +18,7 @@ public class PaymentExecutedUseCase implements WorkflowInputPort {
 
     @Override
     public void execute(Sale sale) {
-        sendSaleToTopicOutputPort.send(sale, SaleEvent.FINALIZE_SALE, Topics.SALE.getTopic());
+        sendSaleToTopicOutputPort.send(sale, SaleEvent.FINALIZE_SALE, Topics.SALE);
     }
 
     @Override

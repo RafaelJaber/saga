@@ -18,8 +18,8 @@ public class PaymentFailureUseCase implements WorkflowInputPort {
 
     @Override
     public void execute(Sale sale) {
-        sendSaleToTopicOutputPort.send(sale, SaleEvent.EXECUTE_ROLLBACK, Topics.INVENTORY.getTopic());
-        sendSaleToTopicOutputPort.send(sale, SaleEvent.CANCEL_SALE, Topics.SALE.getTopic());
+        sendSaleToTopicOutputPort.send(sale, SaleEvent.EXECUTE_ROLLBACK, Topics.INVENTORY);
+        sendSaleToTopicOutputPort.send(sale, SaleEvent.CANCEL_SALE, Topics.SALE);
     }
 
     @Override
