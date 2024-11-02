@@ -1,6 +1,5 @@
 package com.rafaeljaber.inventory.config.usecases;
 
-import com.rafaeljaber.inventory.adapters.out.SendToKafkaAdapter;
 import com.rafaeljaber.inventory.adapters.out.UpdateInventoryAdapter;
 import com.rafaeljaber.inventory.application.core.usecases.CreditInventoryUseCase;
 import com.rafaeljaber.inventory.application.core.usecases.FindInventoryByProductIdUseCase;
@@ -13,13 +12,11 @@ public class CreditInventoryConfig {
     @Bean
     public CreditInventoryUseCase creditInventoryUseCase(
             FindInventoryByProductIdUseCase findInventoryByProductIdUseCase,
-            UpdateInventoryAdapter updateInventoryAdapter,
-            SendToKafkaAdapter sendToKafkaAdapter
+            UpdateInventoryAdapter updateInventoryAdapter
     ) {
         return new CreditInventoryUseCase(
                 findInventoryByProductIdUseCase,
-                updateInventoryAdapter,
-                sendToKafkaAdapter
+                updateInventoryAdapter
         );
     }
 

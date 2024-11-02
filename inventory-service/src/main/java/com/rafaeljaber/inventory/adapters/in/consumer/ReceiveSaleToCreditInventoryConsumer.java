@@ -16,11 +16,11 @@ public class ReceiveSaleToCreditInventoryConsumer {
     private final CreditInventoryInputPort creditInventoryInputPort;
 
     @KafkaListener(
-            topics = "${jaber.kafka.topics.sale}",
+            topics = "${jaber.kafka.topics.inventory}",
             groupId = "${jaber.kafka.group-id.inventory-credit}"
     )
     public void receive(SaleMessage saleMessage) {
-        if (SaleEvent.FAILED_PAYMENT.equals(saleMessage.getEvent())) {
+        if (SaleEvent.EXECUTE_ROLLBACK.equals(saleMessage.getEvent())) {
             log.info("Beginning of rollback inventory");
             creditInventoryInputPort.credit(saleMessage.getSale());
             log.info("End of rollback inventory");

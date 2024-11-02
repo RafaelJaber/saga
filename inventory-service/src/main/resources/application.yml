@@ -13,7 +13,8 @@ spring:
 jaber:
   kafka:
     topics:
-      sale: tp-saga-sale
+      orchestrator: tp-saga-orchestrator
+      inventory: tp-saga-inventory
     group-id:
       inventory-debit: "inventory-debit"
       inventory-credit: "inventory-credit"

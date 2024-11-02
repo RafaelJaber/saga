@@ -16,11 +16,11 @@ public class ReceiveSaleToDebitInventoryConsume {
     private final DebitInventoryInputPort debitInventoryInputPort;
 
     @KafkaListener(
-            topics = "${jaber.kafka.topics.sale}",
+            topics = "${jaber.kafka.topics.inventory}",
             groupId = "${jaber.kafka.group-id.inventory-debit}"
     )
     public void receive(SaleMessage saleMessage) {
-        if (SaleEvent.CREATED_SALE.equals(saleMessage.getEvent())) {
+        if (SaleEvent.PREPARE_INVENTORY.equals(saleMessage.getEvent())) {
             log.info("Beginning of goods separation");
             debitInventoryInputPort.debit(saleMessage.getSale());
             log.info("End of separation of goods");
