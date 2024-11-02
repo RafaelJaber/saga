@@ -4,6 +4,8 @@ import com.jaber.sale.adapters.in.controller.mapper.SaleRequestMapper;
 import com.jaber.sale.adapters.in.controller.request.SaleRequest;
 import com.jaber.sale.application.core.domain.Sale;
 import com.jaber.sale.application.ports.in.CreateSaleInputPort;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,12 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/sales")
+@Tag(name = "Sales", description = "API para operações de venda")
 public class SaleController {
 
     private final CreateSaleInputPort createSaleInputPort;
     private final SaleRequestMapper saleRequestMapper;
 
     @PostMapping
+    @Operation(summary = "Criar uma nova venda", description = "Endpoint para criar uma nova venda")
     public ResponseEntity<Void> createSale(@Valid @RequestBody SaleRequest saleRequest) {
         Sale sale = saleRequestMapper.toSale(saleRequest);
         createSaleInputPort.create(sale);
