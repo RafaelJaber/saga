@@ -16,3 +16,4 @@ jaber:
       sale: tp-saga-sale
     group-id:
       inventory-debit: "inventory-debit"
+      inventory-credit: "inventory-credit"

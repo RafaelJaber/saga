@@ -45,4 +45,8 @@ public class Inventory {
     public void debitQuantity(Integer quantity) {
         this.quantity -= quantity;
     }
+
+    public void creditQuantity(Integer quantity) {
+        this.quantity += quantity;
+    }
 }
