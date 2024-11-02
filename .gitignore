@@ -90,3 +90,6 @@ settings.xml
 target/
 .site/
 test-output/
+
+# Files and Folders
+/data
